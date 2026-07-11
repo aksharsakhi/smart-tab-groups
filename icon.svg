@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3f51b5;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00bcd4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4caf50;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="tabGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.25" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.05" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background rounded card -->
+  <rect x="8" y="8" width="112" height="112" rx="26" fill="url(#bgGrad)" />
+
+  <!-- Group rings or tab icons -->
+  <!-- Tab Group Container 1 -->
+  <rect x="22" y="24" width="56" height="38" rx="8" fill="url(#tabGrad)" stroke="#ffffff" stroke-width="2" stroke-opacity="0.3" />
+  <circle cx="34" cy="34" r="4" fill="#ffeb3b" />
+  
+  <!-- Tab Group Container 2 -->
+  <rect x="42" y="44" width="56" height="38" rx="8" fill="url(#tabGrad)" stroke="#ffffff" stroke-width="2" stroke-opacity="0.5" />
+  <circle cx="54" cy="54" r="4" fill="#e91e63" />
+
+  <!-- Tab Group Container 3 (Active) -->
+  <rect x="52" y="66" width="56" height="38" rx="8" fill="#ffffff" filter="url(#glow)" />
+  <circle cx="64" cy="76" r="4" fill="#00bcd4" />
+  <rect x="74" y="74" width="22" height="4" rx="2" fill="#111111" fill-opacity="0.4" />
+  <rect x="64" y="84" width="32" height="4" rx="2" fill="#111111" fill-opacity="0.2" />
+</svg>

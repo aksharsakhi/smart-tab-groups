@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Tab Groups</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <svg class="brand-logo" viewBox="0 0 128 128" width="28" height="28">
+          <use href="icon.svg#bgGrad"></use>
+          <!-- Inline replica of SVG layout for local rendering -->
+          <rect x="8" y="8" width="112" height="112" rx="26" fill="url(#bgGrad)" />
+          <rect x="22" y="24" width="56" height="38" rx="8" fill="rgba(255,255,255,0.15)" stroke="#ffffff" stroke-width="2" stroke-opacity="0.3" />
+          <circle cx="34" cy="34" r="4" fill="#ffeb3b" />
+          <rect x="42" y="44" width="56" height="38" rx="8" fill="rgba(255,255,255,0.2)" stroke="#ffffff" stroke-width="2" stroke-opacity="0.5" />
+          <circle cx="54" cy="54" r="4" fill="#e91e63" />
+          <rect x="52" y="66" width="56" height="38" rx="8" fill="#ffffff" />
+          <circle cx="64" cy="76" r="4" fill="#00bcd4" />
+        </svg>
+        <div class="brand-text">
+          <h1>Smart Tabs</h1>
+          <span class="subtext">AI-Powered Tab Manager</span>
+        </div>
+      </div>
+      <button id="quick-group-btn" class="primary-btn glow-effect" title="Automatically group all tabs">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <span>Auto-Group</span>
+      </button>
+    </header>
+
+    <!-- Main Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="dashboard" id="tab-dashboard" title="Dashboard">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+        <span>Stats</span>
+      </button>
+      <button class="nav-tab" data-tab="groups" id="tab-groups" title="Tab Groups">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+        <span>Groups</span>
+      </button>
+      <button class="nav-tab" data-tab="cleaner" id="tab-cleaner" title="Tab Cleaner">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+        <span>Cleaner</span>
+      </button>
+      <button class="nav-tab" data-tab="workspaces" id="tab-workspaces" title="Workspaces">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+        <span>Workspaces</span>
+      </button>
+      <button class="nav-tab" data-tab="settings" id="tab-settings" title="Settings">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        <span>Settings</span>
+      </button>
+    </nav>
+
+    <!-- Main Content Panels -->
+    <main class="app-main">
+      
+      <!-- Panel 1: Dashboard -->
+      <section class="tab-panel active" id="panel-dashboard">
+        <div class="stats-overview">
+          <div class="stat-card glow-blue">
+            <span class="stat-label">Total Tabs</span>
+            <span class="stat-value" id="stat-total-tabs">0</span>
+            <div class="stat-indicator" id="stat-tabs-ratio">0% of normal limit</div>
+          </div>
+          <div class="stat-card glow-purple">
+            <span class="stat-label">Tab Groups</span>
+            <span class="stat-value" id="stat-total-groups">0</span>
+            <div class="stat-indicator" id="stat-groups-ratio">active groups</div>
+          </div>
+          <div class="stat-card glow-red" id="stat-card-duplicates">
+            <span class="stat-label">Duplicates</span>
+            <span class="stat-value" id="stat-duplicate-tabs">0</span>
+            <div class="stat-indicator">cloned pages</div>
+          </div>
+          <div class="stat-card glow-orange" id="stat-card-stale">
+            <span class="stat-label">Stale Tabs</span>
+            <span class="stat-value" id="stat-stale-tabs">0</span>
+            <div class="stat-indicator">inactive > 2h</div>
+          </div>
+        </div>
+
+        <div class="quick-actions-panel glass-card">
+          <h3>Quick Organization</h3>
+          <p>Get rid of tab clutter in just one click.</p>
+          <div class="btn-grid">
+            <button id="dash-group-btn" class="action-btn flex-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+              <span>Auto-Group Tabs</span>
+            </button>
+            <button id="dash-duplicates-btn" class="action-btn danger-outline flex-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              <span>Clear Duplicates</span>
+            </button>
+            <button id="dash-stale-btn" class="action-btn warning-outline flex-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span>Close Stale Tabs</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="productivity-tip glass-card">
+          <div class="tip-icon">💡</div>
+          <div class="tip-text">
+            <h4>Pro Organizer Tip</h4>
+            <p id="dynamic-tip">Tab grouping lets you toggle visibility for an entire group to focus on one task at a time.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 2: Groups -->
+      <section class="tab-panel" id="panel-groups">
+        <div class="panel-section-header">
+          <h3>Active Tab Groups</h3>
+          <span class="badge" id="active-groups-count">0 Groups</span>
+        </div>
+        <div id="groups-list" class="scroll-container group-list-view">
+          <!-- Populated by JS -->
+          <div class="empty-state">
+            <p>No active tab groups. Click "Auto-Group" to sort them!</p>
+          </div>
+        </div>
+
+        <div class="panel-section-header margin-top">
+          <h3>Category Mappings</h3>
+        </div>
+        <div class="category-info-grid">
+          <div class="category-tag coding">Coding</div>
+          <div class="category-tag shopping">Shopping</div>
+          <div class="category-tag college">College & Research</div>
+          <div class="category-tag media">YouTube & Media</div>
+          <div class="category-tag social">Social & News</div>
+        </div>
+      </section>
+
+      <!-- Panel 3: Cleaner -->
+      <section class="tab-panel" id="panel-cleaner">
+        <div class="cleaner-toggle-bar">
+          <button id="cleaner-duplicates-tab" class="toggle-btn active" data-subtab="duplicates">
+            Duplicates (<span id="count-duplicates-badge">0</span>)
+          </button>
+          <button id="cleaner-stale-tab" class="toggle-btn" data-subtab="stale">
+            Stale Tabs (<span id="count-stale-badge">0</span>)
+          </button>
+        </div>
+
+        <!-- Duplicates Content -->
+        <div id="cleaner-duplicates-content" class="subtab-content active scroll-container">
+          <div class="bulk-action-bar" id="dup-bulk-bar">
+            <span>Find matching open URLs</span>
+            <button id="close-all-duplicates-btn" class="danger-btn compact-btn">Close All Duplicates</button>
+          </div>
+          <div id="duplicates-list-container">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Stale Tabs Content -->
+        <div id="cleaner-stale-content" class="subtab-content scroll-container">
+          <div class="bulk-action-bar" id="stale-bulk-bar">
+            <span id="stale-threshold-desc">Inactive for > 2 hours</span>
+            <button id="close-all-stale-btn" class="warning-btn compact-btn">Close All Stale</button>
+          </div>
+          <div id="stale-list-container">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 4: Workspaces -->
+      <section class="tab-panel" id="panel-workspaces">
+        <div class="glass-card workspace-save-box">
+          <h3>Save Current Workspace</h3>
+          <p>Saves all active tabs and their group structures.</p>
+          <div class="save-input-group">
+            <input type="text" id="workspace-name-input" placeholder="e.g. Thesis Research, Shopping Spree" maxlength="30" />
+            <button id="save-workspace-btn" class="primary-btn glow-effect compact-btn">Save</button>
+          </div>
+        </div>
+
+        <div class="panel-section-header margin-top">
+          <h3>Saved Workspaces</h3>
+          <span class="badge" id="workspaces-count">0 Saved</span>
+        </div>
+        <div id="workspaces-list-container" class="scroll-container">
+          <!-- Populated by JS -->
+          <div class="empty-state">
+            <p>No saved workspaces yet. Give it a name above and click Save!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 5: Settings -->
+      <section class="tab-panel" id="panel-settings">
+        <div class="settings-card glass-card">
+          <h3>Stale Tabs Threshold</h3>
+          <p>Define how long a background tab can remain unused before being flagged as stale.</p>
+          <div class="setting-row">
+            <label for="setting-stale-time">Inactivity period:</label>
+            <select id="setting-stale-time" class="settings-select">
+              <option value="1">1 minute (Testing)</option>
+              <option value="10">10 minutes</option>
+              <option value="60">1 hour</option>
+              <option value="120" selected>2 hours</option>
+              <option value="240">4 hours</option>
+              <option value="720">12 hours</option>
+              <option value="1440">1 day</option>
+              <option value="4320">3 days</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="settings-card glass-card margin-top">
+          <h3>Custom Grouping Rules</h3>
+          <p>Add custom domains to map them directly to auto-groups.</p>
+          <div class="add-rule-form">
+            <input type="text" id="new-rule-domain" placeholder="Domain (e.g. github.com, reddit.com)" />
+            <select id="new-rule-category" class="settings-select">
+              <option value="coding">Coding</option>
+              <option value="shopping">Shopping</option>
+              <option value="college">College & Research</option>
+              <option value="media">YouTube & Media</option>
+              <option value="social">Social & News</option>
+            </select>
+            <button id="add-rule-btn" class="primary-btn compact-btn">Add</button>
+          </div>
+          <div id="rules-list-container" class="rules-list scroll-container">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <div class="settings-footer margin-top">
+          <button id="reset-settings-btn" class="danger-outline btn-full compact-btn">Reset to Default Rules</button>
+          <p class="settings-version">Smart Tab Groups v1.0.0 | Manifest V3</p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Toast Notification Banner -->
+    <div id="toast" class="toast-notification hidden">
+      <span id="toast-message">Success!</span>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
